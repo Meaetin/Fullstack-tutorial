@@ -1,12 +1,11 @@
-import prod from './prod.js';
-import dev from './dev.js';
-
-let defaultExport;
+let keys;
 
 if (process.env.NODE_ENV === "production") {
-    defaultExport = prod;
+    let env = await import ('./prod.js');
+    keys = env.default;
 } else {
-    defaultExport = dev;
+    let env =  await import ('./dev.js')
+    keys = env.default;
 }
 
-export default defaultExport;
+export default keys;
