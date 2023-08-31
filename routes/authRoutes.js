@@ -1,4 +1,5 @@
 import passport from "passport";
+import keys from '../config/keys.js';
 
 export default function authRoutes(app) {
     app.get("/auth/google", passport.authenticate("google", {
@@ -15,4 +16,8 @@ export default function authRoutes(app) {
         req.logout();
         res.send(req.user);
     });
+
+    app.get("/", (req, res) => {
+       res.send(keys.cookieKey);
+    })
 }
